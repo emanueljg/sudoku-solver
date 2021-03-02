@@ -38,7 +38,7 @@ public class Gui {
         pane.createDialog(grid, "Grid Error").show();
         for (Error error : errors) {
             s.clearNumber(error.r, error.c);
-            error.textField.setText("0");     
+            error.textField.setText("");
         }
     } 
 
@@ -49,8 +49,13 @@ public class Gui {
             for (int c = 0; c < s.getDimension(); c++) {
                 JTextField tf = (JTextField) grid.getComponent(i);
                 try {
-                    int n = Integer.parseInt(tf.getText());
-                    s.setOrClearNumber(r, c, n);
+                    String text = tf.getText();
+                    if (text.equals("")) {
+                        s.clearNumber(r, c);
+                        continue;
+                    }
+                    int n = Integer.parseInt(text);
+                    s.setNumber(r, c, n);
                 } catch (NumberFormatException e) {
                     errors.add(new Error("Invalid integer: " + tf.getText(), tf, r, c));
                 } catch (IllegalArgumentException e) {
@@ -73,7 +78,8 @@ public class Gui {
         for (int r = 0; r < s.getDimension(); r++) {
             for (int c = 0; c < s.getDimension(); c++) {
                 JTextField tf = (JTextField) grid.getComponent(i);
-                String n = String.valueOf(s.getNumber(r, c));
+                int nbr = s.getNumber(r, c);
+                String n = nbr != 0 ? String.valueOf(nbr) : "";
                 tf.setText(n);
                 i++;
             }
@@ -87,7 +93,7 @@ public class Gui {
             solverToGrid(grid, s);
             if (!solved) {
                 JOptionPane pane = new JOptionPane("Could not find a solution!");
-                pane.createDialog(grid, "Info").show();
+                pane.createDialog(grid, "Info").setVisible(true);
             }
         }
     }
@@ -105,8 +111,13 @@ public class Gui {
         Container mainPane = mainFrame.getContentPane();
         
         JPanel grid = new JPanel();
+        Font f = new Font("serif", Font.PLAIN, 30);
         for (int i = 0; i < Math.pow(s.getDimension(), 2);  i++) {
-            JTextField tf = new JTextField("0");
+            JTextField tf = new JTextField();
+            tf.setPreferredSize(new Dimension(50, 50));
+            tf.setHorizontalAlignment(JTextField.CENTER);
+            tf.setFont(f);
+            if (i == 0) tf.setBackground(Color.PINK);
             grid.add(tf); 
         }
 
@@ -125,7 +136,6 @@ public class Gui {
         buttonPanel.add(clearButton);
 
         mainPane.add(buttonPanel, BorderLayout.PAGE_END); 
-
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
