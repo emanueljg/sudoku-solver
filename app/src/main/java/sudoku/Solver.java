@@ -8,11 +8,11 @@ import java.util.Set;
 import java.util.Arrays;
 
 public class Solver implements SudokuSolver {
-    int dimension;
-    int[][] matrix;
-    boolean bounds;
-    int[][] origins;
-    int boxSize;
+    private int dimension;
+    private int[][] matrix;
+    private boolean bounds;
+    private int[][] origins;
+    private int boxSize;
     
     /**
      * Constructs a new Solver.
@@ -78,8 +78,6 @@ public class Solver implements SudokuSolver {
     /**
      * Asserts that a row, column and number are within their respective bounds. 
      * 
-     * Toggled on or off by the bounds attribute. 
-     * 
      * @param r
      *        the row
      * @param c
@@ -102,9 +100,6 @@ public class Solver implements SudokuSolver {
     /**
      * Asserts that a row and column are within their bounds.
      * 
-     * Bounds are checked by delegating to assertIsWithinBounds(r, c, n) 
-     * with a dummy number. 
-     *
      * @param r
      *        the row
      * @param c
@@ -119,9 +114,6 @@ public class Solver implements SudokuSolver {
     /**
      * Asserts that a number is within its bounds.
      *
-     * Bounds are checked by delegating to assertIsWithinBounds(r, c, n) 
-     * with a dummy row and column.
-     *
      * @param n
      *        the number
      * @throws IllegalArgumentException
@@ -134,15 +126,13 @@ public class Solver implements SudokuSolver {
     /**
      * Asserts that the matrix nbrs is quadratic and within bounds. 
      * 
-     * Bounds are checked by assertIsWithinBounds.
-     *
      * @param nbrs
      *        the matrix
      * @throws IllegalArgumentException
      *        if the matrix is not quadric or if the delegated method call
      *        throws IllegalArgumentException 
      */
-    public void assertMatrixIsWithinBounds(int[][] nbrs) {
+    private void assertMatrixIsWithinBounds(int[][] nbrs) {
         int rows = nbrs.length;
         int cols = nbrs[0] != null ? nbrs[0].length : 0;
         if (rows != cols) {  // must be quadratic
@@ -317,12 +307,6 @@ public class Solver implements SudokuSolver {
      * Gets the box at row r, column c.
      * 
      * Bounds are checked with assertIsWithinBounds. 
-     *
-     * The box is returned by using the origins from getOrigins() 
-     * and the box size of getBoxSize() to
-     * set the logical boundaries of each box, which r and c are
-     * checked against. When the boundary checks are passed, a box is created
-     * from the selected origin and then returned.
      *
      * @param r
      *        the row

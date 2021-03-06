@@ -1,0 +1,8 @@
+-d '/home/ejg/self/edaa01-workspace/sudoku/app/build/docs/javadoc'
+-doctitle 'app API'
+-notimestamp 
+-quiet 
+-windowtitle 'app API'
+'/home/ejg/self/edaa01-workspace/sudoku/app/src/main/java/sudoku/SudokuSolver.java'
+'/home/ejg/self/edaa01-workspace/sudoku/app/src/main/java/sudoku/Solver.java'
+'/home/ejg/self/edaa01-workspace/sudoku/app/src/main/java/sudoku/Gui.java'

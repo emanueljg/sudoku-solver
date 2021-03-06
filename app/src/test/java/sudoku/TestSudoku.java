@@ -27,6 +27,14 @@ class TestSudoku {
     }
 
     @Test
+    void testGetDimension() {
+        assertEquals(9, s2.getDimension());
+        assertEquals(16, s3.getDimension());
+    }
+
+    
+
+    @Test
     void testAssertIsWithinBounds() {
         s2.assertIsWithinBounds(0, 0, 1);
         s2.assertIsWithinBounds(0, 8, 3);
@@ -133,4 +141,20 @@ class TestSudoku {
         assertFalse(s1.isUniqueArray(a8));
         assertFalse(s1.isUniqueArray(a9));
     }
+
+    // simple edge-case solves
+    // 99% of all solve tests are done in TestSolve.java
+    @Test
+    void testSimpleSolve() {
+        //unsolvable
+        s2.setNumber(0, 0, 5);
+        s2.setNumber(0, 1, 5);
+        assertFalse(s2.solve()); 
+        assertFalse(s2.isAllValid());
+        //empty board (of course solvable)
+        s2.clear();
+        s2.solve();
+        assertTrue(s2.isAllValid());
+    }
+
 }

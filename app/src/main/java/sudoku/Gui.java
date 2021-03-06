@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class Gui {
 
-    public Gui(Solver s) {
+    public Gui(SudokuSolver s) {
         SwingUtilities.invokeLater(() -> createWindow(s, "Sudoku Solver", 300, 300));
     }
 
@@ -25,24 +25,25 @@ public class Gui {
         } 
     }
 
-    private void doGridErrorPopup(List<Error> errors, JPanel grid, Solver s) {
+    private void doGridErrorPopup(List<Error> errors, JPanel grid, SudokuSolver s) {
         StringBuilder sb = new StringBuilder("Error(s) at following cell(s) occured:\n");
         for (Error error : errors) {
             // (r, c) -> (y, x)
             // (x, y) -> (c, r)
             sb.append(String.format("\nAt (%d, %d): %s", error.c + 1, error.r + 1, error.message));
         }
-        sb.append("\n\nThe cell(s) will be cleared.");
+        // perhaps this is a bit rude?
+        //sb.append("\n\nThe cell(s) will be cleared.");        
 
         JOptionPane pane = new JOptionPane(sb.toString(), JOptionPane.ERROR_MESSAGE);
         pane.createDialog(grid, "Grid Error").show();
-        for (Error error : errors) {
-            s.clearNumber(error.r, error.c);
-            error.textField.setText("");
-        }
+        //for (Error error : errors) {
+        //    s.clearNumber(error.r, error.c);
+        //    error.textField.setText("");
+        //}
     } 
 
-    public boolean gridToSolver(JPanel grid, Solver s) {
+    public boolean gridToSolver(JPanel grid, SudokuSolver s) {
         int i = 0;
         List<Error> errors = new ArrayList<Error>(); 
         for (int r = 0; r < s.getDimension(); r++) {
@@ -73,7 +74,7 @@ public class Gui {
         }
     }
 
-    public void solverToGrid(JPanel grid, Solver s) {
+    public void solverToGrid(JPanel grid, SudokuSolver s) {
         int i = 0;
         for (int r = 0; r < s.getDimension(); r++) {
             for (int c = 0; c < s.getDimension(); c++) {
@@ -86,7 +87,7 @@ public class Gui {
         }
     }
 
-    public void solveAction(JPanel grid, Solver s) {
+    public void solveAction(JPanel grid, SudokuSolver s) {
         boolean ran = gridToSolver(grid, s);
         if (ran) {
             boolean solved = s.solve();
@@ -98,12 +99,33 @@ public class Gui {
         }
     }
 
-    public void clearAction(JPanel grid, Solver s) {
+    public void clearAction(JPanel grid, SudokuSolver s) {
         s.clear();
         solverToGrid(grid, s);
     }
 
-    public void createWindow(Solver s, 
+    // I was about to write a huge text about how this works
+    // but I changed my mind, it made it pointlessly complicated
+    // if you want to know how it works, bring out a pen and paper
+    // like I did. It will make sense, trust me.
+    private void doColorTextFields(JPanel panel, SudokuSolver s) {
+        boolean penDown = false;
+        int boxSize = (int) Math.sqrt((int) s.getDimension());
+        int boxRowSwitch = boxSize * s.getDimension();
+        for (int i = 0; i < Math.pow(s.getDimension(), 2); i++) {
+            if (i % boxSize == 0 &&  
+                (i % s.getDimension() != 0 || 
+                 (boxSize % 2 != 0 && i % boxRowSwitch == 0) || 
+                 (boxSize % 2 == 0 && i % boxRowSwitch != 0))) {
+                penDown = !penDown;
+            }
+            Component tf = panel.getComponent(i);
+            Color color = penDown ? Color.PINK : Color.WHITE;
+            tf.setBackground(color);      
+        }
+    }
+
+    public void createWindow(SudokuSolver s, 
                              String title,
                              int width, int height) {
         JFrame mainFrame = new JFrame(title);
@@ -112,15 +134,16 @@ public class Gui {
         
         JPanel grid = new JPanel();
         Font f = new Font("serif", Font.PLAIN, 30);
-        for (int i = 0; i < Math.pow(s.getDimension(), 2);  i++) {
+        
+        for (int i = 0; i < Math.pow(s.getDimension(), 2); i++) {
             JTextField tf = new JTextField();
             tf.setPreferredSize(new Dimension(50, 50));
             tf.setHorizontalAlignment(JTextField.CENTER);
             tf.setFont(f);
-            if (i == 0) tf.setBackground(Color.PINK);
             grid.add(tf); 
         }
-
+        doColorTextFields(grid, s);
+        
         GridLayout gl = new GridLayout(s.getDimension(), s.getDimension());
         grid.setLayout(gl);
         mainPane.add(grid, BorderLayout.CENTER);
@@ -142,7 +165,8 @@ public class Gui {
                            
 
     public static void main(String[] args) {
-        Solver s = Solver.ofDefaults();
+        int dim = 9;
+        SudokuSolver s = Solver.ofDimension(dim);
         Gui gui = new Gui(s); 
     }
 

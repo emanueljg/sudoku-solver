@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sudoku.TestSolve" tests="46" skipped="0" failures="0" errors="0" timestamp="2021-03-06T21:56:42" hostname="diogenes" time="3.051">
+  <properties/>
+  <testcase name="testSolves16()" classname="sudoku.TestSolve" time="0.052"/>
+  <testcase name="testSolves01a()" classname="sudoku.TestSolve" time="0.004"/>
+  <testcase name="testSolves01b()" classname="sudoku.TestSolve" time="0.001"/>
+  <testcase name="testSolves01c()" classname="sudoku.TestSolve" time="0.014"/>
+  <testcase name="testSolves02a()" classname="sudoku.TestSolve" time="0.005"/>
+  <testcase name="testSolves02b()" classname="sudoku.TestSolve" time="0.003"/>
+  <testcase name="testSolves02c()" classname="sudoku.TestSolve" time="0.022"/>
+  <testcase name="testSolves03a()" classname="sudoku.TestSolve" time="0.007"/>
+  <testcase name="testSolves03b()" classname="sudoku.TestSolve" time="0.018"/>
+  <testcase name="testSolves03c()" classname="sudoku.TestSolve" time="0.012"/>
+  <testcase name="testSolves04a()" classname="sudoku.TestSolve" time="0.065"/>
+  <testcase name="testSolves04b()" classname="sudoku.TestSolve" time="0.005"/>
+  <testcase name="testSolves04c()" classname="sudoku.TestSolve" time="0.001"/>
+  <testcase name="testSolves05a()" classname="sudoku.TestSolve" time="0.003"/>
+  <testcase name="testSolves05b()" classname="sudoku.TestSolve" time="0.007"/>
+  <testcase name="testSolves05c()" classname="sudoku.TestSolve" time="0.03"/>
+  <testcase name="testSolves06a()" classname="sudoku.TestSolve" time="0.001"/>
+  <testcase name="testSolves06b()" classname="sudoku.TestSolve" time="0.001"/>
+  <testcase name="testSolves06c()" classname="sudoku.TestSolve" time="0.001"/>
+  <testcase name="testSolves07a()" classname="sudoku.TestSolve" time="0.071"/>
+  <testcase name="testSolves07b()" classname="sudoku.TestSolve" time="0.631"/>
+  <testcase name="testSolves07c()" classname="sudoku.TestSolve" time="0.048"/>
+  <testcase name="testSolves08a()" classname="sudoku.TestSolve" time="0.019"/>
+  <testcase name="testSolves08b()" classname="sudoku.TestSolve" time="0.031"/>
+  <testcase name="testSolves08c()" classname="sudoku.TestSolve" time="0.029"/>
+  <testcase name="testSolves09a()" classname="sudoku.TestSolve" time="0.057"/>
+  <testcase name="testSolves09b()" classname="sudoku.TestSolve" time="0.266"/>
+  <testcase name="testSolves09c()" classname="sudoku.TestSolve" time="1.222"/>
+  <testcase name="testSolves10a()" classname="sudoku.TestSolve" time="0.005"/>
+  <testcase name="testSolves10b()" classname="sudoku.TestSolve" time="0.002"/>
+  <testcase name="testSolves10c()" classname="sudoku.TestSolve" time="0.001"/>
+  <testcase name="testSolves11a()" classname="sudoku.TestSolve" time="0.097"/>
+  <testcase name="testSolves11b()" classname="sudoku.TestSolve" time="0.059"/>
+  <testcase name="testSolves11c()" classname="sudoku.TestSolve" time="0.021"/>
+  <testcase name="testSolves12a()" classname="sudoku.TestSolve" time="0.004"/>
+  <testcase name="testSolves12b()" classname="sudoku.TestSolve" time="0.012"/>
+  <testcase name="testSolves12c()" classname="sudoku.TestSolve" time="0.003"/>
+  <testcase name="testSolves13a()" classname="sudoku.TestSolve" time="0.001"/>
+  <testcase name="testSolves13b()" classname="sudoku.TestSolve" time="0.001"/>
+  <testcase name="testSolves13c()" classname="sudoku.TestSolve" time="0.0"/>
+  <testcase name="testSolves14a()" classname="sudoku.TestSolve" time="0.007"/>
+  <testcase name="testSolves14b()" classname="sudoku.TestSolve" time="0.003"/>
+  <testcase name="testSolves14c()" classname="sudoku.TestSolve" time="0.01"/>
+  <testcase name="testSolves15a()" classname="sudoku.TestSolve" time="0.032"/>
+  <testcase name="testSolves15b()" classname="sudoku.TestSolve" time="0.035"/>
+  <testcase name="testSolves15c()" classname="sudoku.TestSolve" time="0.104"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
